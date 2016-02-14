@@ -6,7 +6,6 @@ var HOSTNAME = 'localhost',
     PORT = 8080,
     PUBLIC_DIR = __dirname + '/public_html';
 
-// TODO: Узнать что принимают параметры. Пофиксить имена.
 app.use(function (req, res, done) {
     done();
     // Здесь нужно написать журналирование в формате
