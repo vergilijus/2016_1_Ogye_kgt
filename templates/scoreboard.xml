@@ -1,23 +1,7 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-	<div class="viewTitle">Simple Run</div>
-
-	<div class="main">
-		<div class="board">
-			<ol class="board__list">
-				<fest:for iterate="json.players.models" index="i" value="model">
-					<li class="board__item">
-						<fest:value>model.get('name')</fest:value>
-						<fest:space />
-						with a score of
-						<fest:space />
-						<fest:value>model.get('score')</fest:value>!
-					</li>
-				</fest:for>
-			</ol>
-
-		</div>
-	</div>
 	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4">
 			<a href="#main" data-hover-text="MAIN MENU" class="coralButton-hover">GO BACK</a>
+		</div>
 	</div>
 </fest:template>

@@ -1,44 +1,55 @@
 /*Setting up the fonts for app
 */
+
 @font-face {
     font-family: 'SSP_Bold';
     src: url(../fonts/SourceSansProBold.ttf);
 }
 
-@font-face {
-    font-family: 'SSP_Regular';
-    src: url(../fonts/SourceSansProRegular.ttf);
-    font-weight:400;
-}
-
-@font-face {
-    font-family: 'SSP_Light';
-    src: url(../fonts/SourceSansProLight.ttf);
-}
 
 /*Global styles
 */
+
 body {
 	font-family: 'SSP_Light';
 	width: 100%;
     overflow-x: hidden;
 }
 
-a {
-	color: #3537eb;
+
+/*Tilte styles
+*/
+
+.viewTitle {
+	margin-bottom: 20px;
+	position: relative;
+	color: #2f2e7f;
+	font-size:40px;
+	font-weight: 300;
+    text-align: center;
 }
+
+.viewSubtitle {
+	position: relative;
+    color: #2f2e7f;
+    margin:0 0 1em 0;
+	font-size:20px;
+	font-weight: 300;
+    text-align: center;
+}
+
+
+/* Button styles
+ */
 
 .coralButton, .coralButton-hover {
   position: relative;
   display: block;
   text-align: center;
   overflow: hidden;
-  margin: 0 0 1em 1em;
+  margin: 0 0 1em 0;
   text-decoration: none;
-  padding: 0 4em;
-  width: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   height: 3.5em;
   font: 300 1em/3.5em 'SSP_Light', sans-serif;
   letter-spacing: .08em;
@@ -55,11 +66,11 @@ a {
 .coralButton:hover, .coralButton-hover:hover {
   background: #5531d0;
   text-decoration: none;
-
 }
 
 .coralButton-hover:hover {
   line-height: 9em;
+  text-decoration: none;
 }
 
 .coralButton-hover:before {
@@ -70,24 +81,12 @@ a {
   width: 100%;
   left: -50%;
   transform: translateX(50%);
+  text-decoration: none;
 }
 
 
-.inputElement {
-	border-radius: 10px;
-	border:1px solid #f15748;
-	font-size: 18px;
-	color: #050505;
-    background-color: #f1f6fa;
-    width: 40%;
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
-}
-
-.inputLabel {
-	display: block;
-}
+/* Input forms
+*/
 
 .form-group label {
 	color: #2f2e7f;
@@ -95,45 +94,16 @@ a {
 	font-size: 16px;
 }
 
-/*sidebar styles END */
-
-/*main box styles START*/
-
-/*Order Grid*/
-
-.viewTitle {
-	margin-bottom: 20px;
-	position: relative;
-	color: #2f2e7f;
-	padding-left: 30px;
-	font-size:40px;
-	font-weight: 300;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+.inputElement {
+	border-radius: 10px;
+	border:1px solid #f15748;
+	font-size: 18px;
+	color: #050505;
+    background-color: #f1f6fa;
+    width: 100%;
+    position: relative;
 }
 
-.viewSubtitle {
-	color: #f15748;
-	position: relative;
-    color: #2f2e7f;
-	padding-left: 30px;
-    margin:0 0 1em 0;
-	font-size:20px;
-	font-weight: 300;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-}
-
-.editForm {
-	padding-left: 40px;
-	padding-right: 40px;
-}
-
-/*sign up form*/
-
-.signUpForm {
-	margin-top: 150px;
-	margin-bottom: 100px;
+.inputLabel {
+	display: block;
 }
