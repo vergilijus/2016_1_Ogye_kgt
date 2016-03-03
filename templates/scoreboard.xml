@@ -1,3 +1,7 @@
-<fest:template xmlns:fest="http://fest.mail.ru">
-    <div id="scoreboard"></div>
+<fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4">
+			<a href="#main" data-hover-text="MAIN MENU" class="coralButton-hover">GO BACK</a>
+		</div>
+	</div>
 </fest:template>
