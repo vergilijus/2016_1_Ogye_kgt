@@ -1,20 +1,18 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4">
-            <div class="table-responsive">
-    			<table class="table ">
-    				<tr class="tableHeader">
-    					<th>Username</th>
-    					<th>Scores</th>
-    				</tr>
-                    <fest:for iterate="json" index="i" value="v">
-    					<tr class="clientRow">
-    					    <td><fest:value>v.name</fest:value></td>
-    						<td><fest:value>v.score</fest:value></td>
-    					</tr>
-                    </fest:for>
-                </table>
-            </div>
-        </div>
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="menu__subtitle">Best scores</div>
+    	<table class="table">
+    		<tr class="table__header">
+    			<th>Username</th>
+    			<th>Scores</th>
+    		</tr>
+            <fest:for iterate="json" index="i" value="v">
+    		    <tr class="clientRow">
+    			    <td><fest:value>v.name</fest:value></td>
+    			    <td><fest:value>v.score</fest:value></td>
+    		    </tr>
+            </fest:for>
+        </table>
+        <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
     </div>
 </fest:template>
