@@ -123,3 +123,27 @@ body {
 	text-align: center;
     padding: 5px 0 ;
 }
+
+
+/* Game screen */
+
+.wrapper {
+  width: 600px;
+  height: 360px;
+  position: relative;
+  margin-bottom: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+canvas {
+  position: relative;;
+  border: 1px solid black;
+  z-index: 1;
+  width: 600px;
+  height: 360px;
+  background-color: #97aee3;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

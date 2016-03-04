@@ -1,7 +1,10 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <div class="wrapper">
+        <canvas id="canvas" width="800" height="480">
+        </canvas>
+    </div>
+
     <div class="col-lg-4 col-lg-offset-4">
-        <div class="menu">
-            <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
-        </div>
+        <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
     </div>
 </fest:template>
