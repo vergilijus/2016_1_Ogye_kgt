@@ -1,14 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
-    <!-- <link rel="stylesheet" href="../public_html/css/lib/bootstrap.css"> -->
-    <!-- Latest compiled and minified JavaScript -->
-
-    <div class="raw">
-        <div class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4">
-            <div class="viewSubtitle">Main Menu</div>
-            <a href="#login" data-hover-text="LOG IN" class="coralButton-hover">LOG IN</a>
-            <a href="#game" data-hover-text="START" class="coralButton-hover">PLAY GAME</a>
-            <a href="#scoreboard" data-hover-text="TOP PLAYERS" class="coralButton-hover">SCOREBOARD</a>
-            <a href="#registration" data-hover-text="REGISTER" class="coralButton-hover">REGISTRATION</a>
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="menu">
+            <div class="menu__subtitle">Main Menu</div>
+            <a href="#login" data-hover-text="LOG IN" class="menu__coralButton-hover">LOG IN</a>
+            <a href="#game" data-hover-text="START" class="menu__coralButton-hover">PLAY GAME</a>
+            <a href="#scoreboard" data-hover-text="TOP PLAYERS" class="menu__coralButton-hover">SCOREBOARD</a>
+            <a href="#registration" data-hover-text="REGISTER" class="menu__coralButton-hover">REGISTRATION</a>
         </div>
     </div>
 </fest:template>

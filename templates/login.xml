@@ -1,13 +1,13 @@
 <fest:template xmlns:fest="http://fest.mail.ru">
-    <div class="viewSubtitle">Signing in</div>
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4">
-            <form>
+    <div class="col-lg-4 col-lg-offset-4">
+        <div class="menu">
+        <div class="menu__subtitle">Signing in</div>
+            <form class="inputForm">
                 <div class="form-group">
-                    <input type="text" class="form-control inputElement" placeholder="Username" required=""/>
+                    <input type="text" class="form-control inputForm__element" placeholder="Username" required=""/>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control inputElement" placeholder="Password" required=""/>
+                    <input type="password" class="form-control inputForm__element" placeholder="Password" required=""/>
                 </div>
                 <div class="checkbox">
                     <label>
@@ -15,9 +15,9 @@
                         Remember me
                     </label>
                 </div>
-                <button data-hover-text="LOG IN" class="coralButton-hover btn-success" type="submit">SIGN IN</button>
+                <button data-hover-text="LOG IN" class="menu__coralButton-hover btn-success" type="submit">SIGN IN</button>
             </form>
-            <a href="#main" data-hover-text="MAIN MENU" class="coralButton-hover">GO BACK</a>
+            <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
         </div>
     </div>
 </fest:template>

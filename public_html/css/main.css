@@ -1,5 +1,4 @@
-/*Setting up the fonts for app
-*/
+/* Setting up the fonts for app */
 
 @font-face {
     font-family: 'SSP_Bold';
@@ -7,8 +6,7 @@
 }
 
 
-/*Global styles
-*/
+/* Global styles */
 
 body {
 	font-family: 'SSP_Light';
@@ -17,10 +15,18 @@ body {
 }
 
 
-/*Tilte styles
-*/
+/* Menu */
 
-.viewTitle {
+.menu {
+	background: #f6efef;
+	height:100%;
+    padding: 3em 3em 3em 3em;
+}
+
+
+/* Menu title styles*/
+
+.menu__title {
 	margin-bottom: 20px;
 	position: relative;
 	color: #2f2e7f;
@@ -29,7 +35,7 @@ body {
     text-align: center;
 }
 
-.viewSubtitle {
+.menu__subtitle {
 	position: relative;
     color: #2f2e7f;
     margin:0 0 1em 0;
@@ -39,10 +45,9 @@ body {
 }
 
 
-/* Button styles
- */
+/* Menu button styles */
 
-.coralButton, .coralButton-hover {
+.menu__coralButton-hover {
   position: relative;
   display: block;
   text-align: center;
@@ -63,17 +68,13 @@ body {
   transition: ease 0.35s all;
 }
 
-.coralButton:hover, .coralButton-hover:hover {
+.menu__coralButton-hover:hover {
   background: #5531d0;
-  text-decoration: none;
-}
-
-.coralButton-hover:hover {
   line-height: 9em;
   text-decoration: none;
 }
 
-.coralButton-hover:before {
+.menu__coralButton-hover:before {
   content: attr(data-hover-text);
   color: #DEEFF5;
   position: absolute;
@@ -85,16 +86,14 @@ body {
 }
 
 
-/* Input forms
-*/
+/* Input form */
 
-.form-group label {
-	color: #2f2e7f;
-	font-family: 'SSP_Regular';
-	font-size: 16px;
+.inputForm {
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
-.inputElement {
+.inputForm__element {
 	border-radius: 10px;
 	border:1px solid #f15748;
 	font-size: 18px;
@@ -104,49 +103,23 @@ body {
     position: relative;
 }
 
-.inputLabel {
+.inputForm__label {
 	display: block;
 }
 
-/* Score Table */
+
+/* Score table */
 
 .table {
-	margin-bottom: 0;
+	margin-bottom: 3em;
 }
 
-.mdl-data-table {
-	border:none;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  line-height: 1.6em;
-padding: 10px 0;
-}
-
-.glyphicon {
-	position: static;
-}
-
-.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
-	padding: 0;
-}
-
-.mdl-data-table th .mdl-data-table__select {
-  position: relative;
-  top: -7px;
-  left: 16px;
-}
-
-.tableHeader {
+.table__header {
 	background:#f15748;
 	color: #ffffff;
 }
 
-
 .table th, .table td {
 	text-align: center;
-}
-
-.table td {
-	padding:20px 0 !important;
+    padding: 5px 0 ;
 }
