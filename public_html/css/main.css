@@ -5,145 +5,138 @@
     src: url(../fonts/SourceSansProBold.ttf);
 }
 
-
 /* Global styles */
 
 body {
-	font-family: 'SSP_Light';
-	width: 100%;
+    font-family: 'SSP_Light';
+    width: 100%;
     overflow-x: hidden;
 }
-
 
 /* Menu */
 
 .menu {
-	background: #f6efef;
-	height:100%;
+    background: #f6efef;
+    height: 100%;
     padding: 3em 3em 3em 3em;
 }
-
 
 /* Menu title styles*/
 
 .menu__title {
-	margin-bottom: 20px;
-	position: relative;
-	color: #2f2e7f;
-	font-size:40px;
-	font-weight: 300;
+    margin-bottom: 20px;
+    position: relative;
+    color: #2f2e7f;
+    font-size: 40px;
+    font-weight: 300;
     text-align: center;
 }
 
 .menu__subtitle {
-	position: relative;
+    position: relative;
     color: #2f2e7f;
-    margin:0 0 1em 0;
-	font-size:20px;
-	font-weight: 300;
+    margin: 0 0 1em 0;
+    font-size: 20px;
+    font-weight: 300;
     text-align: center;
 }
-
 
 /* Menu button styles */
 
 .menu__coralButton-hover {
-  position: relative;
-  display: block;
-  text-align: center;
-  overflow: hidden;
-  margin: 0 0 1em 0;
-  text-decoration: none;
-  width: 100%;
-  height: 3.5em;
-  font: 300 1em/3.5em 'SSP_Light', sans-serif;
-  letter-spacing: .08em;
-  background: #f15748;
-  color: #ffffff;
-  border:none;
-  border-radius: 10px;
-  -moz-transition: ease 0.35s all;
-  -o-transition: ease 0.35s all;
-  -webkit-transition: ease 0.35s all;
-  transition: ease 0.35s all;
+    position: relative;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 0 1em 0;
+    text-decoration: none;
+    width: 100%;
+    height: 3.5em;
+    font: 300 1em/3.5em 'SSP_Light', sans-serif;
+    letter-spacing: .08em;
+    background: #f15748;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    -moz-transition: ease 0.35s all;
+    -o-transition: ease 0.35s all;
+    -webkit-transition: ease 0.35s all;
+    transition: ease 0.35s all;
 }
 
 .menu__coralButton-hover:hover {
-  background: #5531d0;
-  line-height: 9em;
-  text-decoration: none;
+    background: #5531d0;
+    line-height: 9em;
+    text-decoration: none;
 }
 
 .menu__coralButton-hover:before {
-  content: attr(data-hover-text);
-  color: #DEEFF5;
-  position: absolute;
-  top: -2.75em;
-  width: 100%;
-  left: -50%;
-  transform: translateX(50%);
-  text-decoration: none;
+    content: attr(data-hover-text);
+    color: #DEEFF5;
+    position: absolute;
+    top: -2.75em;
+    width: 100%;
+    left: -50%;
+    transform: translateX(50%);
+    text-decoration: none;
 }
-
 
 /* Input form */
 
 .inputForm {
-	padding-left: 40px;
-	padding-right: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .inputForm__element {
-	border-radius: 10px;
-	border:1px solid #f15748;
-	font-size: 18px;
-	color: #050505;
+    border-radius: 10px;
+    border: 1px solid #f15748;
+    font-size: 18px;
+    color: #050505;
     background-color: #f1f6fa;
     width: 100%;
     position: relative;
 }
 
 .inputForm__label {
-	display: block;
+    display: block;
 }
-
 
 /* Score table */
 
 .table {
-	margin-bottom: 3em;
+    margin-bottom: 3em;
 }
 
 .table__header {
-	background:#f15748;
-	color: #ffffff;
+    background: #f15748;
+    color: #ffffff;
 }
 
 .table th, .table td {
-	text-align: center;
-    padding: 5px 0 ;
+    text-align: center;
+    padding: 5px 0;
 }
-
 
 /* Game screen */
 
 .wrapper {
-  width: 600px;
-  height: 360px;
-  position: relative;
-  margin-bottom: 3em;
-  left: 50%;
-  transform: translateX(-50%);
+    width: 600px;
+    height: 360px;
+    position: relative;
+    margin-bottom: 3em;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 canvas {
-  position: relative;;
-  border: 1px solid black;
-  z-index: 1;
-  width: 600px;
-  height: 360px;
-  background-color: #97aee3;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    position: relative;;
+    border: 1px solid black;
+    z-index: 1;
+    width: 600px;
+    height: 360px;
+    background-color: #97aee3;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }

@@ -1,12 +1,13 @@
-define(function(require){
+define(function (require) {
 
-    var Backbone = require('backbone');
+    var Backbone = require('backbone'),
         mainView = require('views/main'),
         loginView = require('views/login'),
         gameView = require('views/game'),
-        scoreboardView = require('views/scoreboard');
+        scoreboardView = require('views/scoreboard'),
         registrationView = require('views/registration');
 
+//todo: вынести $page
     var Router = Backbone.Router.extend({
         routes: {
             'scoreboard': 'scoreboardAction',
