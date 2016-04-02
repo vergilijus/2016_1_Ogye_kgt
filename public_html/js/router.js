@@ -1,10 +1,10 @@
-define(function(require){
+define(function (require) {
 
-    var Backbone = require('backbone');
+    var Backbone = require('backbone'),
         mainView = require('views/main'),
         loginView = require('views/login'),
         gameView = require('views/game'),
-        scoreboardView = require('views/scoreboard');
+        scoreboardView = require('views/scoreboard'),
         registrationView = require('views/registration');
 
 var app = require('views/app');
@@ -16,6 +16,7 @@ var app = require('views/app');
         'reg': registrationView
     });
 
+//todo: вынести $page
     var Router = Backbone.Router.extend({
 
         routes: {
@@ -45,7 +46,7 @@ var app = require('views/app');
 
         regAction: function () {
             app.getView('reg').show();
-        },
+        }
 
     });
 
