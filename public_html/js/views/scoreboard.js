@@ -20,13 +20,15 @@ define([
             return this;
         },
         show: function () {
-            // TODO
+            this.trigger('show');
+            this.$el.show();
         },
+
         hide: function () {
-            // TODO
+            this.$el.hide();
         }
 
     });
 
-    return new ScoreboardView();
+    return ScoreboardView;
 });

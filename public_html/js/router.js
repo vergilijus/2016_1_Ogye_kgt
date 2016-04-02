@@ -7,35 +7,48 @@ define(function(require){
         scoreboardView = require('views/scoreboard');
         registrationView = require('views/registration');
 
+var app = require('views/app');
+    app.setViews({
+        'main': mainView,
+        'login': loginView,
+        'scoreboard': scoreboardView,
+        'game': gameView,
+        'reg': registrationView
+    });
+
     var Router = Backbone.Router.extend({
+
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
             'login': 'loginAction',
-            'registration': 'registrationAction',
+            'registration': 'regAction',
             '*default': 'defaultActions'
         },
+
         defaultActions: function () {
-            console.log(mainView);
-            $('#page').html(mainView.render().$el);
+//            console.log("Second: " + this.session.isAuth);
+            app.getView('main').show();
         },
+
         scoreboardAction: function () {
-            console.log('the #scoreboard route');
-            $('#page').html(scoreboardView.render().$el);
+            app.getView('scoreboard').show();
         },
+
         gameAction: function () {
-            console.log('the #game route');
-            $('#page').html(gameView.render().$el);
+            app.getView('game').show();
         },
+
         loginAction: function () {
-            console.log('the #login route');
-            $('#page').html(loginView.render().$el);
+            app.getView('login').show();
         },
-        registrationAction: function () {
-            console.log('the #registration route');
-            $('#page').html(registrationView.render().$el);
-        }
+
+        regAction: function () {
+            app.getView('reg').show();
+        },
+
     });
 
     return new Router();
+
 });
