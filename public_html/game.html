@@ -214,6 +214,9 @@
 
             rollOverMesh.position.copy(intersect.point).add(intersect.face.normal);
             rollOverMesh.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
+            if (!checkLimit(rollOverMesh.position)) {
+                return;
+            }
             rollOverMesh.visible = true;
 
         } else {
