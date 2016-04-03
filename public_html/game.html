@@ -30,7 +30,7 @@
     if (!Detector.webgl) Detector.addGetWebGLMessage();
 
     var CELL_SIZE = 200;
-    var BOX_SIZE = 100;
+    var BOX_SIZE = 200;
     var SIZE = 4;
     var container;
     var camera, scene, renderer, controls;
@@ -39,12 +39,13 @@
 
     var rollOverGeo;
     var rollOverMesh, rollOverMaterial;
-    var cubeGeo, cubeMaterial, materialDark, materialLight;
+    var cubeGeo, cubeMaterial, materialDark, materialLight, invisibleMaterial;
     var darkColor = new THREE.Color(0.7, 0.7, 0.7);
     var lightColor = new THREE.Color(0.2, 0.2, 0.5);
     var curColor = lightColor;
     var objects = [];
 
+    var helperCube;
 
     init();
     animate();
@@ -83,6 +84,8 @@
 
         cubeGeo = new THREE.BoxGeometry(BOX_SIZE, BOX_SIZE, BOX_SIZE);
 
+        helperCube = new THREE.BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
+        invisibleMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, opacity: 0, transparent: true});
         materialDark = new THREE.MeshLambertMaterial({
             color: darkColor
         });
@@ -95,8 +98,8 @@
 
         // grid
 
-        var size = (SIZE * CELL_SIZE) / 2;
         var step = CELL_SIZE;
+        var size = SIZE * CELL_SIZE / 2;
 
         var geometry = new THREE.Geometry();
 
@@ -119,7 +122,7 @@
 
         raycaster = new THREE.Raycaster();
         mouse = new THREE.Vector2();
-        var plane_size = 2 * BOX_SIZE * SIZE;
+        var plane_size = CELL_SIZE * SIZE;
         var geometry2 = new THREE.PlaneBufferGeometry(plane_size, plane_size);
         geometry2.rotateX(-Math.PI / 2);
 
@@ -223,12 +226,17 @@
                 curColor = rollOverMesh.material.color;
                 rollOverMesh.material.color = ( curColor.equals(lightColor) ) ? darkColor : lightColor;
                 cubeMaterial = cubeMaterial === materialDark ? materialLight : materialDark;
-                var voxel = new THREE.Mesh(cubeGeo, cubeMaterial);
+                var voxel = new THREE.Mesh(cubeGeo, invisibleMaterial);
                 voxel.position.copy(intersect.point).add(intersect.face.normal);
                 voxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
                 scene.add(voxel);
-
                 objects.push(voxel);
+
+                /*var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
+                 voxel.position.copy(intersect.point).add(intersect.face.normal);
+                 voxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
+                 scene.add(helperVoxel);
+                 objects.push(helperVoxel);*/
 
             }
 
@@ -243,7 +251,6 @@
             case 16:
                 isShiftDown = true;
                 break;
-
         }
 
     }
@@ -255,7 +262,6 @@
             case 16:
                 isShiftDown = false;
                 break;
-
         }
 
     }
