@@ -37,9 +37,12 @@
     var plane, cube;
     var mouse, raycaster, isShiftDown = false;
 
+    var rollOverGeo;
     var rollOverMesh, rollOverMaterial;
     var cubeGeo, cubeMaterial, materialDark, materialLight;
-
+    var darkColor = new THREE.Color(0.7, 0.7, 0.7);
+    var lightColor = new THREE.Color(0.2, 0.2, 0.5);
+    var curColor = lightColor;
     var objects = [];
 
     init();
@@ -62,14 +65,16 @@
         camera.position.set(500, 800, 1300);
         camera.lookAt(new THREE.Vector3());
 
-        controls = new THREE.OrbitControls( camera );
+        controls = new THREE.OrbitControls(camera);
+        controls.noPan = true;
+
 
         scene = new THREE.Scene();
 
         // roll-over helpers
 
         rollOverGeo = new THREE.BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        rollOverMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, opacity: 0.5, transparent: true});
+        rollOverMaterial = new THREE.MeshBasicMaterial({color: lightColor, opacity: 0.2, transparent: true});
         rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
         scene.add(rollOverMesh);
 
@@ -78,11 +83,11 @@
         cubeGeo = new THREE.BoxGeometry(BOX_SIZE, BOX_SIZE, BOX_SIZE);
 
         materialDark = new THREE.MeshLambertMaterial({
-            color: 0x555555
+            color: darkColor
         });
 
         materialLight = new THREE.MeshLambertMaterial({
-            color: 0xffffff
+            color: lightColor
         });
 
         cubeMaterial = materialDark;
@@ -113,10 +118,10 @@
         raycaster = new THREE.Raycaster();
         mouse = new THREE.Vector2();
         var plane_size = 2 * BOX_SIZE * SIZE;
-        var geometry = new THREE.PlaneBufferGeometry(plane_size, plane_size);
-        geometry.rotateX(-Math.PI / 2);
+        var geometry2 = new THREE.PlaneBufferGeometry(plane_size, plane_size);
+        geometry2.rotateX(-Math.PI / 2);
 
-        plane = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({visible: false}));
+        plane = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({visible: false}));
         scene.add(plane);
 
         objects.push(plane);
@@ -207,6 +212,8 @@
                 // create cube
 
             } else {
+                curColor = rollOverMesh.material.color;
+                rollOverMesh.material.color = ( curColor.equals(lightColor) ) ? darkColor : lightColor;
                 cubeMaterial = cubeMaterial === materialDark ? materialLight : materialDark;
                 var voxel = new THREE.Mesh(cubeGeo, cubeMaterial);
                 voxel.position.copy(intersect.point).add(intersect.face.normal);
@@ -246,14 +253,13 @@
     }
 
     function animate() {
-        requestAnimationFrame( animate );
+        requestAnimationFrame(animate);
         render();
-        stats.update();
     }
 
     function render() {
         controls.update();
-        renderer.render( scene, camera );
+        renderer.render(scene, camera);
     }
 
 
