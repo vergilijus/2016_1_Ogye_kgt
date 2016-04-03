@@ -30,7 +30,7 @@
     if (!Detector.webgl) Detector.addGetWebGLMessage();
 
     var CELL_SIZE = 200;
-    var BOX_SIZE = 200;
+    var BOX_SIZE = 150;
     var SIZE = 4;
     var container;
     var camera, scene, renderer, controls;
@@ -85,7 +85,7 @@
         cubeGeo = new THREE.BoxGeometry(BOX_SIZE, BOX_SIZE, BOX_SIZE);
 
         helperCube = new THREE.BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
-        invisibleMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, opacity: 0, transparent: true});
+        invisibleMaterial = new THREE.MeshBasicMaterial({visible: false});
         materialDark = new THREE.MeshLambertMaterial({
             color: darkColor
         });
@@ -226,17 +226,17 @@
                 curColor = rollOverMesh.material.color;
                 rollOverMesh.material.color = ( curColor.equals(lightColor) ) ? darkColor : lightColor;
                 cubeMaterial = cubeMaterial === materialDark ? materialLight : materialDark;
-                var voxel = new THREE.Mesh(cubeGeo, invisibleMaterial);
+                var voxel = new THREE.Mesh(cubeGeo, cubeMaterial);
                 voxel.position.copy(intersect.point).add(intersect.face.normal);
                 voxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
                 scene.add(voxel);
                 objects.push(voxel);
 
-                /*var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
-                 voxel.position.copy(intersect.point).add(intersect.face.normal);
-                 voxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
-                 scene.add(helperVoxel);
-                 objects.push(helperVoxel);*/
+                var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
+                helperVoxel.position.copy(intersect.point).add(intersect.face.normal);
+                helperVoxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
+                scene.add(helperVoxel);
+                objects.push(helperVoxel);
 
             }
 
