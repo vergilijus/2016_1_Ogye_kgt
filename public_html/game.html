@@ -30,8 +30,10 @@
     if (!Detector.webgl) Detector.addGetWebGLMessage();
 
     var CELL_SIZE = 200;
-    var ITEM_SIZE = 150;
-    var SIZE = 4;
+    var ITEM_SIZE = 160;
+    var CELL_NUMBER = 4;
+    var SIZE = CELL_NUMBER * CELL_SIZE;
+
     var container;
     var camera, scene, renderer, controls;
     var plane, cube;
@@ -60,15 +62,17 @@
         info.style.top = '10px';
         info.style.width = '100%';
         info.style.textAlign = 'center';
-        info.innerHTML = '<br><strong>click</strong>: add voxel, <strong>shift + click</strong>: remove voxel';
+        info.innerHTML = '<br><strong>click</strong>: add item, <strong>shift + click</strong>: remove item';
         container.appendChild(info);
 
         camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
         camera.position.set(500, 800, 1300);
-        camera.lookAt(new THREE.Vector3());
+        camera.lookAt(new THREE.Vector3(0, 0, 1000));
 
         controls = new THREE.OrbitControls(camera);
-        controls.noPan = true;
+        controls.enablePan = false;
+        controls.minDistance = 500;
+        controls.maxDistance = 5000;
 
 
         scene = new THREE.Scene();
@@ -99,7 +103,7 @@
         // grid
 
         var step = CELL_SIZE;
-        var size = SIZE * CELL_SIZE / 2;
+        var size = CELL_NUMBER * CELL_SIZE / 2;
 
         var geometry = new THREE.Geometry();
 
@@ -122,7 +126,7 @@
 
         raycaster = new THREE.Raycaster();
         mouse = new THREE.Vector2();
-        var plane_size = CELL_SIZE * SIZE;
+        var plane_size = CELL_SIZE * CELL_NUMBER;
         var geometry2 = new THREE.PlaneBufferGeometry(plane_size, plane_size);
         geometry2.rotateX(-Math.PI / 2);
 
@@ -157,8 +161,32 @@
 
     }
 
-    function putItem() {
+    function putItem(intersect) {
+        var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
+        helperVoxel.position.copy(intersect.point).add(intersect.face.normal);
+        helperVoxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
 
+        if (!checkLimit(helperVoxel.position)) {
+            return;
+        }
+
+        scene.add(helperVoxel);
+        objects.push(helperVoxel);
+        curColor = rollOverMesh.material.color;
+        rollOverMesh.material.color = ( curColor.equals(lightColor) ) ? darkColor : lightColor;
+        cubeMaterial = cubeMaterial === materialDark ? materialLight : materialDark;
+        var voxel = new THREE.Mesh(itemGeometry, cubeMaterial);
+        voxel.position.copy(helperVoxel.position);
+        scene.add(voxel);
+        objects.push(voxel);
+    }
+
+    function checkLimit(pos) {
+        console.log(pos.x, pos.y, pos.z);
+        if (pos.x < - 300 || pos.x > 300) return false;
+        if (pos.z < - 300 || pos.z > 300) return false;
+        if (pos.y >= 900) return false;
+        return true;
     }
 
     function onWindowResize() {
@@ -220,27 +248,8 @@
 
                 }
 
-                // create cube
-
             } else {
-                var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
-                helperVoxel.position.copy(intersect.point).add(intersect.face.normal);
-                helperVoxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
-                scene.add(helperVoxel);
-                objects.push(helperVoxel);
-
-                curColor = rollOverMesh.material.color;
-                rollOverMesh.material.color = ( curColor.equals(lightColor) ) ? darkColor : lightColor;
-                cubeMaterial = cubeMaterial === materialDark ? materialLight : materialDark;
-                var voxel = new THREE.Mesh(itemGeometry, cubeMaterial);
-                voxel.position.copy(helperVoxel.position);
-                /*voxel.position.copy(intersect.point).add(intersect.face.normal);
-                voxel.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);*/
-                scene.add(voxel);
-                objects.push(voxel);
-
-
-
+                putItem(intersect);
             }
 
         }
