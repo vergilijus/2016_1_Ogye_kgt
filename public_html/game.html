@@ -45,6 +45,7 @@
     var curColor = lightColor;
     var objects = [];
 
+
     init();
     animate();
 
@@ -91,6 +92,7 @@
         });
 
         cubeMaterial = materialDark;
+
         // grid
 
         var size = (SIZE * CELL_SIZE) / 2;
@@ -128,7 +130,7 @@
 
         // Lights
 
-        var ambientLight = new THREE.AmbientLight(0x606060);
+        var ambientLight = new THREE.AmbientLight(0x909090);
         scene.add(ambientLight);
 
         var directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -152,6 +154,9 @@
 
     }
 
+    function putItem() {
+
+    }
 
     function onWindowResize() {
 
@@ -178,7 +183,10 @@
 
             rollOverMesh.position.copy(intersect.point).add(intersect.face.normal);
             rollOverMesh.position.divideScalar(CELL_SIZE).floor().multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
+            rollOverMesh.visible = true;
 
+        } else {
+            rollOverMesh.visible = false;
         }
 
     }
