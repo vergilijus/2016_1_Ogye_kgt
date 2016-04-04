@@ -26,6 +26,5 @@
             <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton">GO BACK</a>
         </div>
     </div>
-    <!--todo: модификатор одним подчеркиванием-->
 
 </fest:template>

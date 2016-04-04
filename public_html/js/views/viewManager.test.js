@@ -21,6 +21,7 @@ define(function (require) {
                 };
            };
         }
+        нет блока меню в гейме и сокрборде
 
         viewManager.addView(gameView);
         assert.notOk(viewManager.views.length != 1 || viewManager.views[viewManager.views.length - 1] != gameView, 'Second addition ok');
