@@ -30,5 +30,5 @@ define([
 
     });
 
-    return ScoreboardView;
+    return new ScoreboardView();
 });

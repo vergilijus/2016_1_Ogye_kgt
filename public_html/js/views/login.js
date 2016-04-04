@@ -28,5 +28,5 @@ define([
 
     });
 
-    return LoginView;
+    return new LoginView();
 });

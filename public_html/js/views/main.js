@@ -28,5 +28,5 @@ define([
 
     });
 
-    return MainView;
+    return new MainView();
 });

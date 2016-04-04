@@ -1,24 +1,14 @@
-define(function (require) {
+define(function(require){
 
     var Backbone = require('backbone'),
         mainView = require('views/main'),
         loginView = require('views/login'),
         gameView = require('views/game'),
         scoreboardView = require('views/scoreboard'),
-        registrationView = require('views/registration');
+        registrationView = require('views/registration'),
+        viewManager = require('views/viewManager');
 
-var app = require('views/app');
-    app.setViews({
-        'main': mainView,
-        'login': loginView,
-        'scoreboard': scoreboardView,
-        'game': gameView,
-        'reg': registrationView
-    });
-
-//todo: вынести $page
     var Router = Backbone.Router.extend({
-
         routes: {
             'scoreboard': 'scoreboardAction',
             'game': 'gameAction',
@@ -27,29 +17,45 @@ var app = require('views/app');
             '*default': 'defaultActions'
         },
 
-        defaultActions: function () {
-//            console.log("Second: " + this.session.isAuth);
-            app.getView('main').show();
+
+        /*
+            var app = require('views/app');
+                viewManager.addView({
+                    'main': mainView,
+                    'login': loginView,
+                    'scoreboard': scoreboardView,
+                    'game': gameView,
+                    'reg': registrationView
+                });
+        */
+
+        manageView: function (view) {
+            viewManager.addView(view);
+            view.show();
         },
 
+        defaultActions: function () {
+            this.manageView(mainView);
+        },
         scoreboardAction: function () {
-            app.getView('scoreboard').show();
+            this.manageView(scoreboardView);
         },
 
         gameAction: function () {
-            app.getView('game').show();
+            this.manageView(gameView);
         },
 
         loginAction: function () {
-            app.getView('login').show();
+            this.manageView(loginView);
         },
 
         regAction: function () {
-            app.getView('reg').show();
+            this.manageView(registrationView);
         }
-
     });
 
     return new Router();
-
 });
+
+
+
