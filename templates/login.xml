@@ -15,9 +15,9 @@
                         Remember me
                     </label>
                 </div>
-                <button data-hover-text="LOG IN" class="menu__coralButton-hover btn-success" type="submit">SIGN IN</button>
+                <button data-hover-text="LOG IN" class="menu__coralButton btn-success" type="submit">SIGN IN</button>
             </form>
-            <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
+            <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton">GO BACK</a>
         </div>
     </div>
 </fest:template>

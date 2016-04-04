@@ -43,7 +43,7 @@ body {
 
 /* Menu button styles */
 
-.menu__coralButton-hover {
+.menu__coralButton {
     position: relative;
     display: block;
     text-align: center;
@@ -64,13 +64,13 @@ body {
     transition: ease 0.35s all;
 }
 
-.menu__coralButton-hover:hover {
+.menu__coralButton:hover {
     background: #5531d0;
     line-height: 9em;
     text-decoration: none;
 }
 
-.menu__coralButton-hover:before {
+.menu__coralButton:before {
     content: attr(data-hover-text);
     color: #DEEFF5;
     position: absolute;
