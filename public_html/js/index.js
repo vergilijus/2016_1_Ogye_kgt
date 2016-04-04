@@ -1,29 +1,29 @@
 function showScoreboardScreen() {
-	// TODO
+    // TODO
 }
 function hideScoreboardScreen() {
-	// TODO
+    // TODO
 }
 
 function showGameScreen() {
-	// TODO
+    // TODO
 }
 function hideGameScreen() {
-	// TODO
+    // TODO
 }
 
 function showLoginScreen() {
-	// TODO
+    // TODO
 }
 function hideLoginScreen() {
-	// TODO
+    // TODO
 }
 
 function showMainScreen() {
-	// TODO
+    // TODO
 }
 
 function hideMainScreen() {
-	// TODO
+    // TODO
 }
 

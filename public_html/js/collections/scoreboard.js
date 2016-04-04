@@ -25,8 +25,6 @@ define(function(require) {
                     {name: 'AnjeySapkovskiy', score: 1948},
                     {name: 'RayBradbery', score: 2012},
                     {name: 'FranzKafka', score: 1924},
-                    {name: 'Bot_1', score: 100},
-                    {name: 'Bot_2', score: 200}
                 ]);
             }
         });
