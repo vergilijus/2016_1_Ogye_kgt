@@ -8,6 +8,12 @@ define(function(require){
         registrationView = require('views/registration'),
         viewManager = require('views/viewManager');
 
+        viewManager.addView(mainView);
+        viewManager.addView(loginView);
+        viewManager.addView(scoreboardView);
+        viewManager.addView(gameView);
+        viewManager.addView(registrationView);
+
     var Router = Backbone.Router.extend({
         routes: {
             'scoreboard': 'scoreboardAction',
@@ -18,39 +24,23 @@ define(function(require){
         },
 
 
-        /*
-            var app = require('views/app');
-                viewManager.addView({
-                    'main': mainView,
-                    'login': loginView,
-                    'scoreboard': scoreboardView,
-                    'game': gameView,
-                    'reg': registrationView
-                });
-        */
-
-        manageView: function (view) {
-            viewManager.addView(view);
-            view.show();
-        },
-
         defaultActions: function () {
-            this.manageView(mainView);
+            mainView.show();
         },
         scoreboardAction: function () {
-            this.manageView(scoreboardView);
+            scoreboardView.show();
         },
 
         gameAction: function () {
-            this.manageView(gameView);
+            gameView.show();
         },
 
         loginAction: function () {
-            this.manageView(loginView);
+            loginView.show();
         },
 
         regAction: function () {
-            this.manageView(registrationView);
+            registrationView.show();
         }
     });
 
