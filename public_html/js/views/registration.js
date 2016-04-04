@@ -28,5 +28,5 @@ define([
 
     });
 
-    return RegistrationView;
+    return new RegistrationView();
 });

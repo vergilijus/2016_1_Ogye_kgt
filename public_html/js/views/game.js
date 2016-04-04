@@ -28,5 +28,5 @@ define([
 
     });
 
-    return GameView;
+    return new GameView();
 });
