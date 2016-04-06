@@ -48,16 +48,15 @@ function init() {
 
     scene = new THREE.Scene();
 
-    // roll-over helpers
+    itemGeometry = new THREE.SphereGeometry(ITEM_SIZE / 2, 30, 30);
 
-    rollOverGeo = new THREE.BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
+    rollOverGeo = itemGeometry;
     rollOverMaterial = new THREE.MeshBasicMaterial({color: lightColor, opacity: 0.2, transparent: true});
     rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
     scene.add(rollOverMesh);
 
     // cubes
 
-    itemGeometry = new THREE.SphereGeometry(ITEM_SIZE / 2, 30, 30);
 
     helperCube = new THREE.BoxGeometry(CELL_SIZE, CELL_SIZE, CELL_SIZE);
     invisibleMaterial = new THREE.MeshBasicMaterial({visible: false});
