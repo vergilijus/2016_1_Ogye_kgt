@@ -1,8 +1,11 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+
     <div id="game" class="wrapper">
     </div>
 
-    <div class="col-lg-4 col-lg-offset-4">
-        <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton-hover">GO BACK</a>
+        <div class="col-lg-4 col-lg-offset-4">
+            <div class="menu">
+            <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton">GO BACK</a>
+        </div>
     </div>
 </fest:template>

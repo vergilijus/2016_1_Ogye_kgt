@@ -2,10 +2,10 @@
     <div class="col-lg-4 col-lg-offset-4">
         <div class="menu">
             <div class="menu__subtitle">Main Menu</div>
-            <a href="#login" data-hover-text="LOG IN" class="menu__coralButton-hover">LOG IN</a>
-            <a href="#game" data-hover-text="START" class="menu__coralButton-hover">PLAY GAME</a>
-            <a href="#scoreboard" data-hover-text="TOP PLAYERS" class="menu__coralButton-hover">SCOREBOARD</a>
-            <a href="#registration" data-hover-text="REGISTER" class="menu__coralButton-hover">REGISTRATION</a>
+            <a href="#login" data-hover-text="LOG IN" class="menu__coralButton">LOG IN</a>
+            <a href="#game" data-hover-text="START" class="menu__coralButton">PLAY GAME</a>
+            <a href="#scoreboard" data-hover-text="TOP PLAYERS" class="menu__coralButton">SCOREBOARD</a>
+            <a href="#registration" data-hover-text="REGISTER" class="menu__coralButton">REGISTRATION</a>
         </div>
     </div>
 </fest:template>

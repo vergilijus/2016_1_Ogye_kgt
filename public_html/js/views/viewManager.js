@@ -7,6 +7,7 @@ define([
         el: '#page',
         views: [],
         showView: function (thisView) {
+            this.views.push(thisView.render());
             if(this.views.current != undefined){
                 $(this.views.current.el).hide();
             }
@@ -21,7 +22,6 @@ define([
         },
         addView: function(view) {
             if (this.views.indexOf(view) == -1) {
-                this.views.push(view.render());
                 this.$el.append(view.$el);
                 this.listenTo(view, 'show', this.showView.bind(this, view));
             }
