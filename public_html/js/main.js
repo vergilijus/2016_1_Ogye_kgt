@@ -5,7 +5,9 @@ require.config({
         jquery: "lib/jquery",
         underscore: "lib/underscore",
         backbone: "lib/backbone",
-        three: "lib/three.min.js"
+        three: "lib/three.min",
+        detector: "Detector",
+        orbit: "controls/OrbitControls"
     },
     shim: {
         'backbone': {
@@ -14,6 +16,14 @@ require.config({
         },
         'underscore': {
             exports: '_'
+        },
+        'detector': {
+            deps: ['jquery',],
+            exports: 'detector'
+        },
+        'orbit': {
+            deps: ['three', 'detector'],
+            exports: 'orbit'
         }
     }
 });

@@ -9,10 +9,9 @@ define([
         showView: function (thisView) {
             this.views.push(thisView.render());
             if(this.views.current != undefined){
-                $(this.views.current.el).hide();
+                this.views.current.hide();
             }
             this.views.current = thisView;
-            $(this.views.current.el).show();
             /*
             for (var viewIndex in this.views) {
                 if (this.views[viewIndex] !== thisView) {

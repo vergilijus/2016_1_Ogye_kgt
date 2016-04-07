@@ -1,6 +1,10 @@
 <fest:template xmlns:fest="http://fest.mail.ru" context_name="json">
+    <!--<div id="game" class="wrapper">-->
+    <!--</div>-->
 
-    <div id="game" class="wrapper">
+    <div id="game">
+         <div id="game-canvas">
+        </div>
     </div>
 
         <div class="col-lg-4 col-lg-offset-4">

@@ -1,32 +1,38 @@
-define([
-    'backbone',
-    'tmpl/game'
-], function(
-    Backbone,
-    tmpl
-){
+define(function (require) {
 
-    var GameView = Backbone.View.extend({
+    var Backbone = require('backbone'),
+        tmpl = require('tmpl/game'),
+        game = require('../game/main');
 
-        template: tmpl,
-        initialize: function () {
-            // TODO
-        },
-        render: function() {
-            this.$el.html(this.template());
-            return this;
-        },
+        var GameView = Backbone.View.extend({
 
-        show: function () {
-            this.trigger('show');
-            this.$el.show();
-        },
+            template: tmpl,
+            initialize: function () {
+                // TODO
+            },
+            render: function() {
+                this.$el.html(this.template());
+                return this;
+            },
 
-        hide: function () {
-            this.$el.hide();
-        }
+            show: function () {
+                this.trigger('show');
+                game.init();
+                this.$el.show();
+            },
 
-    });
+            hide: function () {
+                this.endGame();
+                this.$el.remove();
+                this.$el.hide();
+            },
+    //        startGame: function () {
+    //            game.init();
+    //        },
+            endGame: function () {
+                $('canvas').remove();
+            }
+        });
 
-    return new GameView();
+        return new GameView();
 });
