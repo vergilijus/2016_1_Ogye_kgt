@@ -18,7 +18,7 @@ require.config({
             exports: '_'
         },
         'detector': {
-            deps: ['jquery',],
+            deps: ['jquery'],
             exports: 'detector'
         },
         'orbit': {
