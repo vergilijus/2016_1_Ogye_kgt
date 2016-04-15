@@ -38,11 +38,11 @@ define(function (require) {
 
             function init() {
                 // field init
-                for (var x = 0; x < CELL_SIZE; ++x) {
+                for (var x = 0; x < CELL_NUMBER; ++x) {
                     gameField[x] = [];
-                    for (var y = 0; y < CELL_SIZE; ++y) {
+                    for (var y = 0; y < CELL_NUMBER; ++y) {
                         gameField[x][y] = [];
-                        for (var z = 0; z < CELL_SIZE; ++z) {
+                        for (var z = 0; z < CELL_NUMBER; ++z) {
                             gameField[x][y][z] = 0;
                         }
                     }
@@ -169,12 +169,17 @@ define(function (require) {
                 voxel.position.copy(helperVoxel.position);
                 scene.add(voxel);
                 objects.push(voxel);
+                var pos = new THREE.Vector3();
+                pos.copy(voxel.position);
+                pos.divideScalar(CELL_SIZE).floor();
 
-                console.log(voxel.position);
+                // Отмечаем ход на игровом поле.
+                gameField[pos.x][pos.y][pos.z] = cubeMaterial === materialDark ? 1 : 2;
+                // TODO: отправлять позицию на сервер.
+                console.log(pos);
             }
 
             function checkLimit(pos) {
-                // console.log(pos.x, pos.y, pos.z);
                 if (pos.x < 0 || pos.x > SIZE) return false;
                 if (pos.z < 0 || pos.z > SIZE) return false;
                 if (pos.y >= SIZE) return false;
