@@ -20,8 +20,8 @@ module.exports = function (grunt) {
                                   //(usually 500ms faster for most) and allows subsequent task runs to share the same context.
                     interrupt: true, //As files are modified this watch task will spawn tasks in child processes.
                                      //Set the interrupt option to true to terminate the previous process and spawn a new one upon later changes.
-                    atBegin: true, //This option will trigger the run of each specified task at startup of the watcher.
-                },
+                    atBegin: true //This option will trigger the run of each specified task at startup of the watcher.
+                }
             },
 
             server: {

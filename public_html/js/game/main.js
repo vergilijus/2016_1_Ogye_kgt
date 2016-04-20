@@ -3,11 +3,13 @@ define(function (require) {
     var THREE = require('three');
     var Detector = require('detector');
     var Orbit = require('orbit');
+    var ws;
 
     var BasicScene = {
         init: function () {
 //        if (!Detector.webgl) Detector.addGetWebGLMessage();
 
+            var HOST = "ws://localhost:8089/api/game";
 
             var CELL_SIZE = 200;
             var ITEM_SIZE = 160;
@@ -36,8 +38,12 @@ define(function (require) {
             init();
             animate();
 
+            function sendCoord(pos) {
+                ws.send(JSON.stringify(pos))
+            }
+
             function init() {
-                // field init
+                // Field init.
                 for (var x = 0; x < CELL_NUMBER; ++x) {
                     gameField[x] = [];
                     for (var y = 0; y < CELL_NUMBER; ++y) {
@@ -47,6 +53,24 @@ define(function (require) {
                         }
                     }
                 }
+
+                // WebSocket init.
+                ws = new WebSocket(HOST);
+                ws.onopen = function (event) {
+                    console.log("Connection open.")
+                };
+                ws.onmessage = function (event) {
+                    var pos = JSON.parse(event.data);
+                    putItemOn(pos.x, pos.y, pos.z);
+                    console.log("Message:" + event.data);
+                };
+                ws.onclose = function (event) {
+                    console.log("Connection close.")
+                };
+                ws.onerror = function (event) {
+                    console.log("Connection error.")
+                };
+
 
                 container = document.createElement('div');
                 document.body.appendChild(container);
@@ -88,7 +112,7 @@ define(function (require) {
 
                 cubeMaterial = materialDark;
 
-                // grid
+                // Grid.
 
                 var step = CELL_SIZE;
                 var size = SIZE;
@@ -118,14 +142,14 @@ define(function (require) {
                 var geometry2 = new THREE.PlaneBufferGeometry(plane_size, plane_size);
                 geometry2.rotateX(-Math.PI / 2);
 
-                // plane
+                // Plane.
                 plane = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({visible: false}));
                 plane.position.copy(new THREE.Vector3(SIZE / 2, 0, SIZE / 2));
                 scene.add(plane);
 
                 objects.push(plane);
 
-                // Lights
+                // Lights.
 
                 var ambientLight = new THREE.AmbientLight(0x909090);
                 scene.add(ambientLight);
@@ -160,6 +184,34 @@ define(function (require) {
                     return;
                 }
 
+                objects.push(helperVoxel);
+                curColor = rollOverMesh.material.color;
+
+                var voxel = new THREE.Mesh(itemGeometry, cubeMaterial);
+                voxel.position.copy(helperVoxel.position);
+
+                objects.push(voxel);
+                var pos = new THREE.Vector3();
+                pos.copy(voxel.position);
+                pos.divideScalar(CELL_SIZE).floor();
+
+                // Отмечаем ход на игровом поле.
+                gameField[pos.x][pos.y][pos.z] = cubeMaterial === materialDark ? 1 : 2;
+                // Отправляем позицию на сервер.
+                console.log(pos);
+                sendCoord(pos);
+            }
+
+            function putItemOn(x, y, z) {
+                var helperVoxel = new THREE.Mesh(helperCube, invisibleMaterial);
+                var newPosition = new THREE.Vector3(x, y, z);
+                newPosition.multiplyScalar(CELL_SIZE).addScalar(CELL_SIZE / 2);
+                helperVoxel.position.copy(newPosition);
+
+                if (!checkLimit(helperVoxel.position)) {
+                    return;
+                }
+
                 scene.add(helperVoxel);
                 objects.push(helperVoxel);
                 curColor = rollOverMesh.material.color;
@@ -169,14 +221,8 @@ define(function (require) {
                 voxel.position.copy(helperVoxel.position);
                 scene.add(voxel);
                 objects.push(voxel);
-                var pos = new THREE.Vector3();
-                pos.copy(voxel.position);
-                pos.divideScalar(CELL_SIZE).floor();
 
-                // Отмечаем ход на игровом поле.
-                gameField[pos.x][pos.y][pos.z] = cubeMaterial === materialDark ? 1 : 2;
-                // TODO: отправлять позицию на сервер.
-                console.log(pos);
+                console.log(voxel.position);
             }
 
             function checkLimit(pos) {
@@ -233,49 +279,25 @@ define(function (require) {
                 var intersects = raycaster.intersectObjects(objects);
 
                 if (intersects.length > 0) {
-
                     var intersect = intersects[0];
-
-                    // delete cube
-
-                    if (isShiftDown) {
-
-                        if (intersect.object != plane) {
-
-                            scene.remove(intersect.object);
-
-                            objects.splice(objects.indexOf(intersect.object), 1);
-
-                        }
-
-                    } else {
-                        putItem(intersect);
-                    }
-
+                    putItem(intersect);
                 }
-
             }
 
             function onDocumentKeyDown(event) {
-
                 switch (event.keyCode) {
-
                     case 16:
                         isShiftDown = true;
                         break;
                 }
-
             }
 
             function onDocumentKeyUp(event) {
-
                 switch (event.keyCode) {
-
                     case 16:
                         isShiftDown = false;
                         break;
                 }
-
             }
 
             function animate() {
@@ -287,7 +309,6 @@ define(function (require) {
                 controls.update();
                 renderer.render(scene, camera);
             }
-
         }
     };
 
