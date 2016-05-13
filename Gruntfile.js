@@ -1,7 +1,20 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
-
+        sass: {
+            dist: {
+                options: {
+                    update: true
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'blocks',
+                    src: ['main.scss'],
+                    dest: 'public_html/css/build/',
+                    ext: '.css'
+                }]
+            }
+        },
         shell: {
             dev: {
                 command: 'node server.js'
@@ -33,6 +46,10 @@ module.exports = function (grunt) {
                     livereload: true //If enabled a live reload server will be started with the watch task per target.
                     //Then after the indicated tasks have run, the live reload server will be triggered with the modified files.
                 }
+            },
+            sass: {
+                files: 'blocks/**/*.scss',
+                tasks: ['sass']
             }
         },
 
@@ -81,6 +98,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-fest');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
+    grunt.loadNpmTasks('grunt-sass');
+
     grunt.registerTask('test', ['qunit:all']);
     grunt.registerTask('default', ['concurrent:target']);
+    grunt.registerTask('compile', ['sass']);
 };

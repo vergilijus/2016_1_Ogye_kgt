@@ -1,0 +1,10 @@
+.table {
+  margin-bottom: 3em;
+}
+
+.table th, .table td {
+  text-align: center;
+  padding: 5px 0;
+}
+
+@import "__header/table__header";

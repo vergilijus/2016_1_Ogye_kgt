@@ -26,9 +26,7 @@ define(function (require) {
                 this.$el.remove();
                 this.$el.hide();
             },
-    //        startGame: function () {
-    //            game.init();
-    //        },
+            
             endGame: function () {
                 $('canvas').remove();
             }

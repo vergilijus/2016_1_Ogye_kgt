@@ -2,13 +2,13 @@
 
 @font-face {
     font-family: 'SSP_Bold';
-    src: url(../fonts/SourceSansProBold.ttf);
+    src: url(build/fonts/source-sans-pro/SourceSansPro-Bold.ttf);
 }
 
 /* Global styles */
 
 body {
-    font-family: 'SSP_Light';
+    font-family: 'SSP_Bold';
     width: 100%;
     overflow-x: hidden;
 }
@@ -119,15 +119,6 @@ body {
 }
 
 /* Game screen */
-
-.wrapper {
-    width: 600px;
-    height: 360px;
-    position: relative;
-    margin-bottom: 3em;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
 canvas {
     position: relative;;

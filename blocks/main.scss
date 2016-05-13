@@ -1,0 +1,19 @@
+/* Setting up the fonts for app */
+
+@font-face {
+  font-family: 'SSP_Bold';
+  src: url(fonts/source-sans-pro/SourceSansPro-Bold.ttf);
+}
+
+/* Global styles */
+
+body {
+  font-family: 'SSP_Bold';
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@import "canvas/canvas";
+@import "inputForm/inputForm";
+@import 'table/table';
+@import "menu/menu";

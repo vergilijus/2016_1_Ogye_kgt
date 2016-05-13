@@ -1,0 +1,11 @@
+.menu {
+  background: #f6efef;
+  height: 100%;
+  padding: 3em 3em 3em 3em;
+  position: relative;
+}
+
+@import "__title/menu__title";
+@import "__subtitle/menu__subtitle";
+@import "__coralButton/menu__coralButton";
+
