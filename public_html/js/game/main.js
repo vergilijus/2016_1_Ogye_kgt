@@ -9,7 +9,7 @@ define(function (require) {
         init: function () {
 //        if (!Detector.webgl) Detector.addGetWebGLMessage();
 
-            var HOST = "ws://95.213.235.104:8089/api/game";
+            var HOST = "ws://127.0.0.1:8089/api/game";
 
             var CELL_SIZE = 200;
             var ITEM_SIZE = 160;
