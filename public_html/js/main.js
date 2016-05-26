@@ -30,10 +30,12 @@ require.config({
 
 define([
     'backbone',
-    'router'
+    'router',
+    'app'
 ], function(
     Backbone,
-    router
+    router,
+    app
 ){
     Backbone.history.start();
 });

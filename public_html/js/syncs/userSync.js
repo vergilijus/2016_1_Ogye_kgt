@@ -4,7 +4,7 @@ define(function(require) {
         var methods = {
             'create': {
                 send: function() {
-                    Backbone.sync('update', model, options);
+                    Backbone.sync('create', model, options);
                 }
             },
             'read': {

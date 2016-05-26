@@ -4,10 +4,10 @@
         <div class="menu__subtitle">Signing in</div>
             <form class="inputForm">
                 <div class="form-group">
-                    <input type="text" class="form-control inputForm__element" placeholder="Username" required=""/>
+                    <input type="text" class="form-control inputForm__element" placeholder="Username" id="login-input" required=""/>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control inputForm__element" placeholder="Password" required=""/>
+                    <input type="password" class="form-control inputForm__element" placeholder="Password" id="password-input" required=""/>
                 </div>
                 <div class="checkbox">
                     <label>
@@ -15,7 +15,7 @@
                         Remember me
                     </label>
                 </div>
-                <button data-hover-text="LOG IN" class="menu__coralButton btn-success" type="submit">SIGN IN</button>
+                <button data-hover-text="LOG IN" class="menu__coralButton btn-success" type="submit" id="sign-in">SIGN IN</button>
             </form>
             <a href="#main" data-hover-text="MAIN MENU" class="menu__coralButton">GO BACK</a>
         </div>

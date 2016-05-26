@@ -24,6 +24,12 @@ define([
                 this.$el.append(view.$el);
                 this.listenTo(view, 'show', this.showView.bind(this, view));
             }
+            this.hideViews();
+        },
+        hideViews: function () {
+            for (var view in this.views) {
+                this.views[view].hide();
+            }
         }
 
     });
