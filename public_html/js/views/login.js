@@ -8,7 +8,6 @@ define(function (require) {
             events: {
                 'click #sign-in': function(e) {
                     var self = this;
-                    e.preventDefault();
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
