@@ -52,6 +52,6 @@ app.delete('/api/session', function(req, res) {
 app.get('/api/session', function(req, res) {
     req.pipe(request('http://localhost:80' + req.url)).pipe(res);
 });
-app.get('/api/user/*',function(req,res) {
+app.get('/api/user',function(req,res) {
     req.pipe(request('http://localhost:80' + req.url)).pipe(res);
 });
