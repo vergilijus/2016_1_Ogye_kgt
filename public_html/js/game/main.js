@@ -19,6 +19,8 @@ define(function (require) {
             var HS = SIZE / 2;
 
             var container;
+            var info;
+
             var camera, scene, renderer, controls;
             var plane, cube;
             var mouse, raycaster, isShiftDown = false;
@@ -37,28 +39,20 @@ define(function (require) {
 
 
             init();
-            animate();
 
             function sendCoord(pos) {
                 ws.send(JSON.stringify(pos))
             }
 
+
+
             function init() {
-                // Field init.
-                for (var x = 0; x < CELL_NUMBER; ++x) {
-                    gameField[x] = [];
-                    for (var y = 0; y < CELL_NUMBER; ++y) {
-                        gameField[x][y] = [];
-                        for (var z = 0; z < CELL_NUMBER; ++z) {
-                            gameField[x][y][z] = 0;
-                        }
-                    }
-                }
 
                 // WebSocket init.
                 ws = new WebSocket(HOST);
                 ws.onopen = function (event) {
-                    console.log("Connection open.")
+                    console.log("Connection open.");
+                    startGame();
                 };
                 ws.onmessage = function (event) {
                     var pos = JSON.parse(event.data);
@@ -74,7 +68,30 @@ define(function (require) {
 
 
                 container = document.createElement('div');
+                info = document.createElement('div');
                 document.body.appendChild(container);
+
+                // Status panel.
+                info.style.position = 'absolute';
+                info.style.top = '200px';
+                info.style.width = '100%';
+                info.style.textAlign = 'center';
+                info.innerHTML = '<br><strong>click</strong>: add item, double <strong>shift + click</strong>: remove item';
+
+            }
+
+            function startGame() {
+
+                // Field init.
+                for (var x = 0; x < CELL_NUMBER; ++x) {
+                    gameField[x] = [];
+                    for (var y = 0; y < CELL_NUMBER; ++y) {
+                        gameField[x][y] = [];
+                        for (var z = 0; z < CELL_NUMBER; ++z) {
+                            gameField[x][y][z] = 0;
+                        }
+                    }
+                }
 
                 camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
                 camera.position.set(500, 800, 1300);
@@ -164,6 +181,7 @@ define(function (require) {
                 renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 container.appendChild(renderer.domElement);
+                container.appendChild(info);
 
                 document.addEventListener('mousemove', onDocumentMouseMove, false);
                 document.addEventListener('mousedown', onDocumentMouseDown, false);
@@ -173,7 +191,7 @@ define(function (require) {
                 //
 
                 window.addEventListener('resize', onWindowResize, false);
-
+                animate();
             }
 
             function putItem(intersect) {
@@ -239,7 +257,6 @@ define(function (require) {
                 camera.updateProjectionMatrix();
 
                 renderer.setSize(window.innerWidth, window.innerHeight);
-
             }
 
             function onDocumentMouseMove(event) {
