@@ -15535,8 +15535,8 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
     var BasicScene = {
         init: function () {
 //        if (!Detector.webgl) Detector.addGetWebGLMessage();
-            
-            
+
+
             var HOST = "ws://127.0.0.1/api/game";
 
             var CELL_SIZE = 200;
@@ -15572,19 +15572,32 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
             }
 
 
-
             function init() {
 
                 // WebSocket init.
                 ws = new WebSocket(HOST);
                 ws.onopen = function (event) {
                     console.log("Connection open.");
-                    startGame();
                 };
                 ws.onmessage = function (event) {
-                    var pos = JSON.parse(event.data);
-                    putItemOn(pos.x, pos.y, pos.z);
                     console.log("Message:" + event.data);
+                    var message = JSON.parse(event.data);
+                    switch (message.status) {
+                        case "waiting":
+                            console.log("Waiting for second player");
+                            break;
+                        case "start":
+                            startGame();
+                            break;
+                        case "newItem":
+                            var pos = message.body;
+                            putItemOn(pos.x, pos.y, pos.z);
+                            break;
+                        case "finish":
+                            var winner = message.body;
+                            console.log("Game Over! Winner: " + winner);
+                            break;
+                    }
                 };
                 ws.onclose = function (event) {
                     console.log("Connection close.")
@@ -15597,14 +15610,6 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
                 container = document.createElement('div');
                 info = document.createElement('div');
                 document.body.appendChild(container);
-
-                // Status panel.
-                info.style.position = 'absolute';
-                info.style.top = '200px';
-                info.style.width = '100%';
-                info.style.textAlign = 'center';
-                info.innerHTML = '<br><strong>click</strong>: add item, double <strong>shift + click</strong>: remove item';
-
             }
 
             function startGame() {
