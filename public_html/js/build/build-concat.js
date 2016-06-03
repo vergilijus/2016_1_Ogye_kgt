@@ -15594,7 +15594,8 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
                             putItemOn(pos.x, pos.y, pos.z);
                             break;
                         case "finish":
-                            var winner = message.body;
+                            ws.close();
+                            var winner = message.win;
                             console.log("Game Over! Winner: " + winner);
                             break;
                     }
@@ -15701,7 +15702,7 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
 
                 // Lights.
 
-                var ambientLight = new THREE.AmbientLight(0x909090);
+                var ambientLight = new THREE.AmbientLight(0x909090, 1);
                 scene.add(ambientLight);
 
                 var directionalLight = new THREE.DirectionalLight(0xffffff);
@@ -15717,8 +15718,8 @@ define('game/main',['require','jquery','three','detector','orbit'],function (req
 
                 document.addEventListener('mousemove', onDocumentMouseMove, false);
                 document.addEventListener('mousedown', onDocumentMouseDown, false);
-                document.addEventListener('keydown', onDocumentKeyDown, false);
-                document.addEventListener('keyup', onDocumentKeyUp, false);
+                // document.addEventListener('keydown', onDocumentKeyDown, false);
+                // document.addEventListener('keyup', onDocumentKeyUp, false);
 
                 //
 
