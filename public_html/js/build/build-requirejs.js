@@ -12950,7 +12950,7 @@ define('views/login',['require','tmpl/login','views/baseView','app'],function (r
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('login-input').value;
                     var password = document.getElementById('password-input').value;
-                    this.$('#sign-in').prop("disabled", true);
+                    // this.$('#sign-in').prop("disabled", true);
                     app.session.save({login: login, password: password}, {
                         success: function() {
                             app.session.set('authed', true);
@@ -15522,7 +15522,7 @@ define('views/registration',['require','tmpl/registration','views/baseView','app
                     this.$('.alert-box.error').finish();
                     var login = document.getElementById('reg-login-input').value;
                     var password = document.getElementById('reg-password-input').value;
-                    this.$('#sign-in').prop("disabled", true);
+                    // this.$('#sign-in').prop("disabled", true);
                     app.user.save({login: login, password: password}, {
                         success: function() {
                             app.session.set('authed', true);
