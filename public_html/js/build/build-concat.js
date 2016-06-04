@@ -13245,10 +13245,9 @@ define('syncs/userSync',['require','backbone'],function(require) {
             },
             'read': {
                 send: function() {
-                    model.url +=  model.get('id');
+                    model.url = '/api/user/' + model.get('id');
                     Backbone.sync(method, model, options);
-                },
-
+                }
             },
             
             'update': {
