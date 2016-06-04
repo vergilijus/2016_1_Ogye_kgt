@@ -12,3 +12,13 @@ canvas {
   margin-left: auto ;
   margin-right: auto ;
 }
+
+gameOverText {
+    display: none !important;
+    width: 400 !important;
+    height: 400 !important;
+    background-color: rgba(255,0,0,0.3) !important;
+    margin-left: 50% ;
+      margin-right: 50%;
+      position: absolute;
+}

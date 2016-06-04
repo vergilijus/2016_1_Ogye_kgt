@@ -2,6 +2,9 @@
     <div id="game" class="">
         <div id="game-canvas" class="canvas">
         </div>
+        <div class="gameOverText menu__title" style="display: none;">
+            <div>Game Over!</div>
+        </div>
     </div>
 
 </fest:template>

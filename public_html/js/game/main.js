@@ -70,6 +70,10 @@ define(function (require) {
                             ws.close();
                             var winner = message.win;
                             console.log("Game Over! Winner: " + winner);
+                            $(".gameOverText").fadeIn();
+                            var t = $(".gameOverText").text();
+                            $(".gameOverText").text(t + " Winner: " + winner);
+                            // window.location.href = "main";
                             break;
                     }
                 };
